@@ -46,6 +46,12 @@ function get_mysqli_connect($host, $user, $pass, $dbname){
     return $conn;
 }
 
+// mysqli driver - procedure
+function get_mysqli_connect2($host, $user, $pass, $dbname){
+    $conn = new mysqli( $host, $user, $pass, $dbname );
+    $conn->query( 'SET NAMES "UTF8"' );
+    return $conn;
+}
 
 
 /********** DB section end **********/
