@@ -46,7 +46,7 @@ function get_mysqli_connect($host, $user, $pass, $dbname){
     return $conn;
 }
 
-// mysqli driver - procedure
+// mysqli driver - class style
 function get_mysqli_connect2($host, $user, $pass, $dbname){
     $conn = new mysqli( $host, $user, $pass, $dbname );
     $conn->query( 'SET NAMES "UTF8"' );
@@ -54,4 +54,15 @@ function get_mysqli_connect2($host, $user, $pass, $dbname){
 }
 
 
+// PDO driver - class style
+function get_pdo_connect($host, $user, $pass, $dbname){
+    $dsn = "mysql:dbname=$dbname;host=$host;";
+    try{
+        $conn = new PDO( $dsn, $user, $pass );
+        $conn->exec( 'SET NAMES "UTF8"' );
+    }catch(PDOException $e){
+        printf( "Database Error: %s", $e->getMessage() );
+    }
+    return $conn;
+}
 /********** DB section end **********/
