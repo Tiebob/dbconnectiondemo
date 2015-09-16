@@ -10,17 +10,17 @@ include_once "config.php";
 include_once "function.php";
 
 
-$conn = get_mysql_connect( $host, $user, $pass, $dbname );
+$conn = get_mysqli_connect( $host, $user, $pass, $dbname );
 
 $stmt = "SELECT * FROM contact";
 
-if( is_resource($conn)){
-    $result = mysql_query( $stmt, $conn );
-    while( $row = mysql_fetch_array($result, MYSQL_ASSOC)){
-        print "<ul>";
-        foreach( $row as $item ){
-            echoli( $item );
-        }
-        print "</ul>";
+
+echobr( '====MySQLi driver: procedure style ====');
+$result = mysqli_query( $conn, $stmt );
+while( $row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+    print "<ul>";
+    foreach( $row as $item ){
+        echoli( $item );
     }
+    print "</ul>";
 }
